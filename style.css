@@ -1,0 +1,9 @@
+body {
+  font-family: monospace;
+  padding: 8px;
+}
+
+table, th, td {
+  border:1px solid black;
+}
+
