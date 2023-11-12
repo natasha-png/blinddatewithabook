@@ -1,5 +1,5 @@
 
-var SPREADSHEET_ID = "1ndp1b_EgDONxhSEa9rd6N80Y_oEvI57cNbqO9EMUIGQ";
+var SPREADSHEET_ID = "16ABb-dvasSNME_7Rq-MfoAwqzUGL9n0fMCSUNn3lYoY";
 var TAB_NAME = "Sheet1";
 
 /* 
@@ -32,12 +32,36 @@ $(document).ready(function () {
     data.forEach(function (entry, index) {
       
       console.log(entry);
+      if(index == 0) return; // ignoring the description row of the spreadsheet- only present on gsheets
+
       
-      $(`<tr> 
-            <td>` + entry.word + `</td>
-            <td>` + entry.definition + `</td>
-         </tr>`)
-        .appendTo("table");
+      let div = $(`<div class='p'>
+      <h2 class="book">` + entry.Book + ` </br> <span class='author'>` + entry.Author + ` </span></h2>
+      <span class="Rating">` + entry.Rating + "/5" + `</p>
+      </div>`).appendTo("table");
+
+
+    if (entry.Image && entry.Image.length > 3) {
+      $(`<div class='img'><img src="` + entry.Image + `"></div>`).appendTo(div);
+    }
+
+    if (entry.Genre) {
+      $(`<div class='genre'` + entry.Genre + `</div>`).appendTo("table");
+    }
+
+
+
+      // $(`<tr> 
+      //       <td>` + entry.Name + `</td>
+      //       <td>` + entry.Book + `</td>
+      //       <td>` + entry.Author + `</td>
+      //       <td>` + entry.Genre + `</td>
+      //       <td>` + entry.Feeling + `</td>
+      //       <td>` + entry.Rating + `</td>
+            
+      //       <td>` + entry.Link + `</td>
+      //    </tr>`)
+      //   .appendTo("table");
   
     });
   });  
